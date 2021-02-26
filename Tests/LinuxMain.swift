@@ -1,7 +1,7 @@
 import XCTest
 
-import RouterTests
+import StravaSwiftUpdateTests
 
 var tests = [XCTestCaseEntry]()
-tests += RouterTests.allTests()
+tests += StravaSwiftUpdateTests.allTests()
 XCTMain(tests)
