@@ -137,7 +137,7 @@ public enum Router {
      Updates an activity, requires write permissions
      - parameter activity: an Activity object
      **/
-    case updateActivity(activity: Activity)
+    case updateActivity(id: Id, params: Params)
 
     /**
      Deletes an activity, requires write permissions
@@ -386,7 +386,7 @@ public enum Router {
 //
 //     - parameter id: the upload id
 //     **/
-//    case uploads(id: Id)
+    case uploads(id: Id)
 //
 
 }
@@ -494,8 +494,8 @@ extension Router {
 
         case .createActivity(let params):
             return ("/activities", params, .post)
-        case .updateActivity(let activity):
-            return ("/activities/\(activity.id!)", nil, .put)
+        case .updateActivity(let id, let params):
+            return ("/activities/\(id)", params, .put)
         case .deleteActivity(let activity):
             return ("/activities/\(activity.id!)", nil, .delete)
 
@@ -563,8 +563,9 @@ extension Router {
 
         case .uploadFile(let upload):
             return ("/uploads", upload.params, .post)
-//        case .uploads(let id):
-//            return ("/uploads/\(id)", nil, .post)
+        case .uploads(let id):
+            return ("/uploads/\(id)", nil, .get)
+      
         }
     }
 }
